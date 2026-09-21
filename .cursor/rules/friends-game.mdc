@@ -6,18 +6,19 @@ alwaysApply: false
 
 # Squimbo — game design
 
-Product: [docs/product.md](../../docs/product.md). Strategy: [docs/strategy.md](../../docs/strategy.md). Roadmap: [docs/roadmap.md](../../docs/roadmap.md). Skill: [friends-game-design](../skills/friends-game-design/SKILL.md).
+Product: [docs/product.md](../../docs/product.md). Strategy: [docs/strategy.md](../../docs/strategy.md). Roadmap: [docs/roadmap.md](../../docs/roadmap.md). Skill: [friends-game-design](../skills/friends-game-design/SKILL.md). Prompts: [docs/prompt-content.md](../../docs/prompt-content.md).
 
 ## MUST
 
 - Room key = Discord Activity `instanceId` (unique). First joiner sets `hostUserId` for DB only — **no host powers** in the Activity.
-- **A-only MVP:** API serves **`most_likely` only** (unused prompt for room locale). No category picker / pack filter.
+- **A-only MVP:** API serves **`most_likely` only** (unused English prompt). No category picker / pack filter.
 - Do **not** add a second equal in-Activity mode (async quiz / “make your quiz” / daily) until [roadmap.md](../../docs/roadmap.md) Phase 5 unlock + product says so.
 - Schema may still list `this_or_that` | `truth` | `challenge` and legacy `PromptCategory` — not in the default start loop.
 - Do not reveal running session scores to clients mid-session — public DTO masks them until `finished`.
 - After all votes, `reveal` exposes **per-round tallies** (winner or tie). Finale scoreboard remains the only place for night totals.
 - On a tied reveal, consensus **revote** (same prompt, prior ballot kept as `done` without scoring) or **continue** (settle scores, next round). Unique winner: **Next** vs **Wrap up** as before.
 - Original prompts only — never paste a third-party proprietary question bank.
+- Prompt bodies: specific + socially revealing. Reject generic fame / nicest / funniest / “be late” with no twist. Quality bar and editorial theme mix in [prompt-content.md](../../docs/prompt-content.md).
 - Preserve round/vote history when adding end/replay — needed for future Friend Profile (B-lite).
 
 ## SHOULD
@@ -27,3 +28,4 @@ Product: [docs/product.md](../../docs/product.md). Strategy: [docs/strategy.md](
 - Tempo is **consensus intents**: lobby Ready (`continue`), post-reveal **Next** vs **Wrap up** (or **revote** vs **continue** on a tie), **all-voted → reveal**. Finale scoreboard on wrap / empty bank; Play again rotates `sessionKey`.
 - Soft target ~8–12 rounds; UI may nudge wrap-up from round 8 — no hard stop.
 - Sweet spot copy: 3–8 players in the channel.
+- Mix editorial themes in `prompt-bank.ts` (still `most_likely` only). Do not filter start/selection by pack.

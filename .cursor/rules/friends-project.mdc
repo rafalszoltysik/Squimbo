@@ -40,6 +40,8 @@ Root **`.env.development`** (or `.env`) via `scripts/with-friends-env.mjs`. Requ
 - Schema changes: `packages/db/prisma/schema.prisma` + migration (`pnpm db:migrate`).
 - Commits: skill `friends-git-staging` — no `git add -A` without a plan; no push unless asked.
 - Tests: `testing.mdc` in the same PR as business logic.
+- Gameplay prompts: [friends-game-design](../skills/friends-game-design/SKILL.md) + [docs/prompt-content.md](../../docs/prompt-content.md). Original only, specific, EN rows in MVP.
+- Marketing SEO/GEO: skill `friends-seo-geo` — registry + `seo/copy/`, not invent features.
 - Project docs (README, CONTRIBUTING, `docs/`): skill `friends-docs`. Facts from the repo only.
 
 ## Docs vs Cursor

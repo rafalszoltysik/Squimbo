@@ -16,4 +16,4 @@ Every new or edited user-visible string goes through i18n in **both** `en` (defa
 
 Same key paths and `{placeholders}` in both files. Native Polish rhythm — not a literal EN calque.
 
-Prompts in the database have their own `locale` column; UI chrome still uses the catalogs above.
+Prompts in Postgres are **English-only in MVP** (`locale = en` check). Author Polish `bodyPl` next to each English body in `packages/db/prisma/prompt-bank.ts` for later; do not insert `pl` rows until product says so. UI chrome still uses the catalogs above. Editorial bar: [docs/prompt-content.md](../../docs/prompt-content.md).
