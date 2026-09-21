@@ -34,12 +34,6 @@ export function buildPageMetadata({
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    keywords: [
-      "Squimbo",
-      "Discord party game",
-      "Discord Activity",
-      "most likely",
-    ],
     alternates: {
       canonical: canonicalPath,
     },

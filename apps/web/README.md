@@ -1,8 +1,10 @@
 # @friends/web
 
-Public marketing site for Squimbo: landing, privacy, terms, and support (English). Canonical production origin: `https://squimbo.app`.
+Public marketing site for Squimbo: landing, SEO content cluster (pillars + guides), privacy, terms, and support (English). Canonical production origin: `https://squimbo.app`.
 
-**Local:** `pnpm --filter @friends/web dev` → http://localhost:3001
+**Local:** `pnpm --filter @friends/web dev` → http://localhost:3012
+
+**SEO / GEO:** registry in `src/seo/registry.ts`, copy in `src/seo/copy/`, surfaces at `/llms.txt` and `/sitemap.xml`. See [docs/seo.md](../../docs/seo.md).
 
 **Deploy:** Vercel root directory `apps/web` — see [docs/deployment.md](../../docs/deployment.md).
 

@@ -1,16 +1,39 @@
 import { getMessages } from "@/i18n";
 import { defaultLocale } from "@/i18n/locales";
-import { SEO_CONTENT_ROUTES, getSeoContentCopy } from "./content-routes";
+import {
+  getGuideRoutes,
+  getPillarRoutes,
+  getSeoPageCopy,
+  SEO_ROUTES,
+} from "./registry";
 import { getSiteUrl } from "./site-url";
 
-/** Curated llms.txt index (llmstxt.org CommonMark). */
+const SUPPORT_DISCORD_URL =
+  process.env.NEXT_PUBLIC_SUPPORT_DISCORD_URL ||
+  "https://discord.gg/PrQkDcxEqk";
+
+/** Curated llms.txt index (llmstxt.org CommonMark), PlayGrid-style cluster. */
 export function buildLlmsTxt(): string {
   const site = getSiteUrl();
   const m = getMessages(defaultLocale);
-  const contentLines = SEO_CONTENT_ROUTES.map((route) => {
-    const copy = getSeoContentCopy(m, route.path);
-    return `- [${copy.footerLabel}](${site}/en${route.path}): ${copy.description}`;
+
+  const pillarLines = getPillarRoutes().map((route) => {
+    const copy = getSeoPageCopy(route.path);
+    return `- [${copy.footerLabel}](${site}/en${route.path}): ${copy.llmsDescription}`;
   });
+
+  const guideLines = getGuideRoutes().map((route) => {
+    const copy = getSeoPageCopy(route.path);
+    return `- [${copy.footerLabel}](${site}/en${route.path}): ${copy.llmsDescription}`;
+  });
+
+  const supportEmail = process.env.NEXT_PUBLIC_SUPPORT_EMAIL?.trim();
+  const contactLines = [
+    `- Support Discord: ${SUPPORT_DISCORD_URL}`,
+    supportEmail
+      ? `- Privacy / support email: ${supportEmail}`
+      : `- Privacy / support: see ${site}/en/support and ${site}/en/privacy`,
+  ];
 
   return [
     `# ${m.meta.siteName}`,
@@ -19,18 +42,39 @@ export function buildLlmsTxt(): string {
     "",
     m.landing.entityBlurb,
     "",
-    "This site is the public marketing and legal home for Squimbo. The game itself runs inside Discord as an Activity.",
+    `Canonical site: ${site}/en`,
     "",
-    "## Product",
+    "## Key pages",
     "",
     `- [Squimbo home](${site}/en): ${m.meta.landingDescription}`,
-    ...contentLines,
+    `- [FAQ](${site}/en/faq): ${getSeoPageCopy("/faq").llmsDescription}`,
     `- [Support](${site}/en/support): ${m.meta.supportDescription}`,
+    `- [How to play](${site}/en/how-to-play): ${getSeoPageCopy("/how-to-play").llmsDescription}`,
     "",
-    "## Optional",
+    "## Positioning pillars (primary marketing landings)",
     "",
+    ...pillarLines,
+    "",
+    "## Topic guides (long-tail cluster)",
+    "",
+    ...guideLines,
     `- [Privacy Policy](${site}/en/privacy): ${m.meta.privacyDescription}`,
     `- [Terms of Use](${site}/en/terms): ${m.meta.termsDescription}`,
+    "",
+    "## Product facts (MVP)",
+    "",
+    "- Discord Activity party game; room key is the Activity instance id",
+    "- Players: Discord display names and avatars from the Embedded App SDK",
+    "- Minimum 2 players to start; feels best with about 3 to 8 in voice",
+    "- Core loop: sealed “who is most likely” votes → reveal → finale scoreboard",
+    "- Prompt bank is English most_likely in MVP; Activity UI chrome is en + pl",
+    "- No in-game host privileges (technical hostUserId only)",
+    "- Not a slash-command bot; not a separate game installer; not random matchmaking",
+    "- Marketing site is legal + SEO home; the night runs inside Discord",
+    "",
+    "## Contact",
+    "",
+    ...contactLines,
     "",
   ].join("\n");
 }
@@ -40,9 +84,10 @@ export function buildLlmsFullTxt(): string {
   const site = getSiteUrl();
   const m = getMessages(defaultLocale);
   const L = m.landing;
-  const F = m.faqPage;
-  const contentLinks = SEO_CONTENT_ROUTES.map((route) => {
-    const copy = getSeoContentCopy(m, route.path);
+  const faq = getSeoPageCopy("/faq");
+
+  const contentLinks = SEO_ROUTES.map((route) => {
+    const copy = getSeoPageCopy(route.path);
     return `- ${copy.footerLabel}: ${site}/en${route.path}`;
   });
 
@@ -79,39 +124,20 @@ export function buildLlmsFullTxt(): string {
     `- ${L.fitPoint2}`,
     `- ${L.fitPoint3}`,
     "",
-    `## ${F.title}`,
+    `## ${faq.title}`,
     "",
-    `### ${F.faq1Q}`,
+    ...faq.faq.flatMap((item) => [
+      `### ${item.question}`,
+      "",
+      item.answer,
+      "",
+    ]),
+    "## Product facts (MVP)",
     "",
-    F.faq1A,
-    "",
-    `### ${F.faq2Q}`,
-    "",
-    F.faq2A,
-    "",
-    `### ${F.faq3Q}`,
-    "",
-    F.faq3A,
-    "",
-    `### ${F.faq4Q}`,
-    "",
-    F.faq4A,
-    "",
-    `### ${F.faq5Q}`,
-    "",
-    F.faq5A,
-    "",
-    `### ${F.faq6Q}`,
-    "",
-    F.faq6A,
-    "",
-    `### ${F.faq7Q}`,
-    "",
-    F.faq7A,
-    "",
-    `### ${F.faq8Q}`,
-    "",
-    F.faq8A,
+    "- Discord Activity; room = Activity instance id",
+    "- Min 2 players; sweet spot ~3–8",
+    "- Sealed most_likely votes; scores at finale",
+    "- No bot, no separate installer, no matchmaking",
     "",
     "## Links",
     "",
@@ -120,6 +146,7 @@ export function buildLlmsFullTxt(): string {
     `- Support: ${site}/en/support`,
     `- Privacy: ${site}/en/privacy`,
     `- Terms: ${site}/en/terms`,
+    `- Support Discord: ${SUPPORT_DISCORD_URL}`,
     "",
   ].join("\n");
 }
