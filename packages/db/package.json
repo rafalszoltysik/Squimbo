@@ -12,7 +12,7 @@
     "db:seed": "node ../../scripts/with-friends-env.mjs -- tsx prisma/seed.ts",
     "dev": "echo \"db package has no dev server\"",
     "lint": "tsc --noEmit -p tsconfig.json",
-    "test": "echo \"no db unit tests\""
+    "test": "vitest run"
   },
   "dependencies": {
     "@prisma/client": "^6.3.0"
@@ -22,7 +22,8 @@
     "dotenv": "catalog:",
     "prisma": "^6.3.0",
     "tsx": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
