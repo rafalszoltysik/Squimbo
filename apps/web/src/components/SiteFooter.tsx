@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieSettingsButton";
 import type { Locale } from "@/i18n/locales";
 import type { Messages } from "@/i18n";
-import { SEO_CONTENT_ROUTES, getSeoContentCopy } from "@/seo/content-routes";
+import { getFooterLearnRoutes, getSeoPageCopy } from "@/seo/registry";
 
 type Props = {
   locale: Locale;
@@ -17,9 +17,9 @@ export function SiteFooter({ locale, messages }: Props) {
         className="site-footer__links site-footer__links--learn"
         aria-label={messages.footer.learn}
       >
-        {SEO_CONTENT_ROUTES.map((route) => (
+        {getFooterLearnRoutes().map((route) => (
           <Link key={route.path} href={`/${locale}${route.path}`}>
-            {getSeoContentCopy(messages, route.path).footerLabel}
+            {getSeoPageCopy(route.path).footerLabel}
           </Link>
         ))}
       </nav>

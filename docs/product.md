@@ -17,7 +17,7 @@
 | Players | Discord display names + avatars from Embedded App SDK |
 | Surface | Discord iframe (desktop + mobile Discord) |
 | Host | First joiner is stored as technical `hostUserId` only — **no in-game privileges** |
-| Categories | **Not in MVP** — one shared prompt bank, no pack picker |
+| Categories | **No pack picker in MVP.** One shared `most_likely` stream. Themes (discord, gaming, dating, …) are mixed in the bank, not chosen by players. |
 | Scoreboard | Per-room `RoomPlayer.score` |
 
 ## Viral loop (MVP = A)
@@ -25,7 +25,7 @@
 Designed around one shared beat: **vote in the dark → dramatic reveal**. Sweet spot **3–8** players. No host privileges — everyone shares the same controls. Soft target **~8–12 rounds** per night.
 
 1. Lobby: player list + **Ready** (intent `continue`). When everyone is ready and ≥2 players → start (no category).
-2. API serves an unused English `most_likely` prompt for the current session. Prompt bank is **EN-only in MVP**; Activity UI chrome stays en+pl.
+2. API serves an unused English `most_likely` prompt for the current session. Prompt bank is **EN-only in MVP**; Activity UI chrome stays en+pl. Editorial bar: [prompt-content.md](./prompt-content.md).
 3. Everyone votes for another player; votes stay hidden while `voting`. UI shows who has voted.
 4. When **all** players have voted → **reveal**: question stays up, show who got the most votes (tallies + avatars). Running session scores stay hidden until the finale.
 5. Clear winner → **Next round** or **Wrap up** (consensus). Tie → show tied players; **Vote again** or **Keep going** (consensus). Revote voids that ballot (kept in history) and reopens the same prompt. Keep going / Next applies scores then continues. All Wrap up (after ≥1 reveal) → **finale scoreboard**. From ~round 8 the UI nudges wrap-up. Empty prompt bank also finishes the night.
@@ -54,7 +54,7 @@ North-star thinking: **groups completing sessions**, not solo DAU — see [metri
 
 ## Tone
 
-Party host, not SaaS. Short prompts, readable on a TV / Discord overlay. Roast-friendly but not harassment or PII fishing. User-facing copy ships in **en + pl**.
+Party host, not SaaS. Short prompts, readable on a TV / Discord overlay. Roast-friendly but not harassment or PII fishing. Prompts must be specific and socially revealing, not generic “who is the funniest / most successful” lines. User-facing **UI** copy ships in **en + pl**. Prompt **rows** stay English in MVP (Polish bodies are authored in the seed source for later).
 
 ## Brand vs engineering
 

@@ -30,6 +30,8 @@ description: >-
 |---------|------|
 | `@friends/api` | Vitest `*.spec.ts` + supertest for HTTP |
 | `@friends/activity` | Vitest `*.test.ts` for helpers |
+| `@friends/web` | Vitest `*.spec.ts` for SEO registry / llms helpers |
+| `@friends/db` | Vitest `prisma/prompt-bank.spec.ts` for bank uniqueness / quality |
 | `@friends/types` | Vitest if helpers exist |
 
 HIGH/CRITICAL security fixes **MUST** include a regression test (`friends-security`).

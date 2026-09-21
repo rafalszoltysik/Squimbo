@@ -13,6 +13,12 @@ export type SeoRelatedLink = {
   label: string;
 };
 
+export type SeoGuideLink = {
+  href: string;
+  label: string;
+  description?: string;
+};
+
 export type SeoHowToStep = {
   name: string;
   text: string;
@@ -37,7 +43,10 @@ type Props = {
   ctaHref: string;
   relatedTitle: string;
   related: SeoRelatedLink[];
-  /** Optional HowTo schema (e.g. how-to-play). */
+  /** Pillar pages: long-tail guides under this intent. */
+  guidesTitle?: string;
+  guides?: SeoGuideLink[];
+  /** Optional HowTo schema (e.g. how-to-play, open-discord-activity). */
   howTo?: {
     name: string;
     description: string;
@@ -95,7 +104,10 @@ function buildContentJsonLd({
         },
       ],
     },
-    {
+  ];
+
+  if (faq.length > 0) {
+    graph.push({
       "@type": "FAQPage",
       "@id": `${pageUrl}#faq`,
       mainEntity: faq.map((item) => ({
@@ -106,8 +118,8 @@ function buildContentJsonLd({
           text: item.answer,
         },
       })),
-    },
-  ];
+    });
+  }
 
   if (howTo) {
     graph.push({
@@ -144,6 +156,8 @@ export function SeoContentPage({
   ctaHref,
   relatedTitle,
   related,
+  guidesTitle,
+  guides,
   howTo,
 }: Props) {
   const siteUrl = getSiteUrl();
@@ -191,15 +205,31 @@ export function SeoContentPage({
           </section>
         ))}
 
-        <section aria-labelledby="seo-faq-title">
-          <h2 id="seo-faq-title">{faqTitle}</h2>
-          {faq.map((item) => (
-            <div key={item.question}>
-              <h3>{item.question}</h3>
-              <p>{item.answer}</p>
-            </div>
-          ))}
-        </section>
+        {guidesTitle && guides && guides.length > 0 ? (
+          <section aria-labelledby="seo-guides-title">
+            <h2 id="seo-guides-title">{guidesTitle}</h2>
+            <ul>
+              {guides.map((guide) => (
+                <li key={guide.href}>
+                  <Link href={`/${locale}${guide.href}`}>{guide.label}</Link>
+                  {guide.description ? <> — {guide.description}</> : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {faq.length > 0 ? (
+          <section aria-labelledby="seo-faq-title">
+            <h2 id="seo-faq-title">{faqTitle}</h2>
+            {faq.map((item) => (
+              <div key={item.question}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </div>
+            ))}
+          </section>
+        ) : null}
 
         <p>
           <a className="hero__cta" href={ctaHref} rel="noopener noreferrer">

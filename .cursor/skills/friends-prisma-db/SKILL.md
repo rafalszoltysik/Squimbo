@@ -28,8 +28,10 @@ description: >-
 1. Align names with existing schema; both sides of relations; `createdAt`/`updatedAt`.
 2. Edit `schema.prisma`; `pnpm db:migrate` from root (not `db:push` for prod-bound changes).
 3. Update Nest services; always scope by authenticated user / membership.
-4. Seed prompts in **en only** for MVP (`most_likely` bank). PL bank returns later on purpose.
-5. Tests per `friends-testing`.
+4. Seed the `most_likely` bank from `packages/db/prisma/prompt-bank.ts`. **Insert English rows only** (`Prompt_locale_en_only_check`). Each entry also has `bodyPl` for a later PL bank; do not insert `locale = pl` until product + a migration drop that check.
+5. Seed **syncs** (update via `replaces` to keep `Prompt.id`, insert missing, delete unreferenced leftovers). Do not wipe rounds/votes. No `--force` in production.
+6. Prompt quality: [docs/prompt-content.md](../../../docs/prompt-content.md). Mix editorial themes in `prompt-bank.ts`. No pack picker. Do not add spice / theme Prisma columns unless schema + migration are explicitly required.
+7. Tests per `friends-testing`.
 
 ## Commands
 

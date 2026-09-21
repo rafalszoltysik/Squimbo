@@ -18,6 +18,8 @@ Strategy: [docs/testing-strategy.md](../../docs/testing-strategy.md). Skill: `.c
 | `apps/api/src/**` service / util | colocated `*.spec.ts` (Vitest) |
 | `apps/api` new endpoint / guard | supertest + TestingModule |
 | `apps/activity/src/**` helpers | colocated `*.test.ts` |
+| `apps/web/src/seo/**` registry / llms | colocated `*.spec.ts` |
+| `packages/db/prisma/prompt-bank.ts` | colocated `prompt-bank.spec.ts` |
 | `packages/types` new DTO fields | update API/activity fixtures |
 | DTO-only, layout, generated | skip — note why |
 

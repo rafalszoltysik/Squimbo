@@ -10,6 +10,8 @@ Business logic, authz, and HTTP/UI contracts ship with a test in the same PR.
 | `apps/api` new endpoint / guard | Vitest + supertest | `apps/api/test/integration/` or colocated |
 | `packages/types` / pure helpers | Vitest | `*.test.ts` |
 | `apps/activity/src/**` helpers | Vitest | colocated `*.test.ts` |
+| `apps/web/src/seo/**` registry / llms helpers | Vitest | colocated `*.spec.ts` |
+| `packages/db/prisma/prompt-bank.ts` | Vitest | `packages/db/prisma/prompt-bank.spec.ts` |
 
 Skip: DTO-only types, layout with no logic, generated Prisma client. Note why in the PR.
 
@@ -19,6 +21,8 @@ Skip: DTO-only types, layout with no logic, generated Prisma client. Note why in
 pnpm test
 pnpm --filter @friends/api test
 pnpm --filter @friends/activity test
+pnpm --filter @friends/web test
+pnpm --filter @friends/db test
 ```
 
 Names of tests: English. One `it` = one behavior. Never assert JWT, Discord access tokens, or secrets in snapshots.
