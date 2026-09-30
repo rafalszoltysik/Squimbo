@@ -14,11 +14,14 @@ Prisma skill: [friends-prisma-db](../skills/friends-prisma-db/SKILL.md).
 - Prefer parameterized Prisma; raw SQL only with bound params.
 - Explicit `select` when a model could grow secrets later.
 - No destructive prod migrations without approval.
+- Keep Supabase PostgREST lockdown: RLS on app tables, no permissive policies / grants for `anon` / `authenticated` that re-open tables to the public anon key.
 
 ## MUST NOT
 
 - Return whole graphs with `include` without a leakage review (votes before reveal).
 - Commit `DATABASE_URL` with passwords.
+- Encode room membership / vote rules as RLS policies (Nest owns authz).
+- `FORCE ROW LEVEL SECURITY` on the Prisma connection role.
 
 ## SHOULD
 

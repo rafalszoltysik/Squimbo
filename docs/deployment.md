@@ -42,6 +42,11 @@ Typical flow: feature branch → PR into `dev` (Preview) → merge `dev` → `ma
    pnpm --filter @friends/db db:migrate
    pnpm --filter @friends/db db:seed
    ```
+6. **RLS lockdown (PostgREST):** Migration `20260930120000_supabase_rls_lockdown` enables row level security on app tables and revokes grants from Supabase roles `anon` / `authenticated`. Nest/Prisma still uses the database role with `BYPASSRLS`. Activity keeps using the anon key for Realtime Broadcast only. After migrate on Supabase, verify:
+   ```powershell
+   node scripts/verify-supabase-rls-lockdown.mjs
+   ```
+   Expect no Vote rows via `/rest/v1/Vote` with the anon key. Local Docker has no `anon` role; the `REVOKE` block is skipped there, but `ENABLE ROW LEVEL SECURITY` still applies.
 
 ---
 
