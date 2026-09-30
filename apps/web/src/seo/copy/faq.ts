@@ -16,7 +16,12 @@ export const faqCopy: SeoPageCopy = {
     {
       question: "What is Squimbo?",
       answer:
-        "Squimbo is a party game that runs as a Discord Activity. Your group opens it in a voice channel, votes on most likely rounds, and sees scores at the finale.",
+        "Squimbo is a party game that runs as a Discord Activity. Your group opens it in a voice channel, votes on most likely rounds with sealed tallies, and sees scores at the finale.",
+    },
+    {
+      question: "Is Squimbo a Discord bot?",
+      answer:
+        "No. Squimbo is a Discord Activity, not a slash-command bot. You open it from the Activity shelf in voice: there is no bot invite required to play.",
     },
     {
       question: "How many players do I need?",
@@ -41,7 +46,7 @@ export const faqCopy: SeoPageCopy = {
     {
       question: "When do scores appear?",
       answer:
-        "At the finale. You can keep playing rounds before you wrap the night.",
+        "At the finale. You can keep playing rounds before you wrap the night. There are no in-game host privileges: everyone shares the same controls.",
     },
     {
       question: "Is Squimbo free?",
@@ -54,5 +59,5 @@ export const faqCopy: SeoPageCopy = {
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };

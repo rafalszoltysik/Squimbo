@@ -13,7 +13,7 @@ export const voteInTheDarkCopy: SeoPageCopy = {
   sections: [
     {
       title: "What “vote in the dark” means",
-      body: "Your choice stays private while others still vote. The UI can show who has voted, but not who got how many votes — until the round locks.",
+      body: "Your choice stays private while others still vote. The UI can show who has voted, but not who got how many votes, until the round locks.",
     },
     {
       title: "Why it is not a live poll",
@@ -22,6 +22,10 @@ export const voteInTheDarkCopy: SeoPageCopy = {
     {
       title: "Reveal vs scoreboard",
       body: "When everyone has voted, the round reveals who got the most votes for that prompt. Running session scores stay hidden until the finale.",
+    },
+    {
+      title: "Format vs mechanic",
+      body: "“Most likely” is the prompt format. Vote in the dark is the sealed-tally mechanic. For the full Discord-native format pitch, see Most likely. This page stays on sealed UX.",
     },
   ],
   faqTitle: "FAQ",
@@ -41,7 +45,12 @@ export const voteInTheDarkCopy: SeoPageCopy = {
       answer:
         "Sealed voting is the mechanic. “Most likely” is the prompt format Squimbo uses for each round. Both happen inside the Discord Activity.",
     },
+    {
+      question: "What happens on a tie?",
+      answer:
+        "Tied reveals can revote the same prompt or keep going. A revote voids that ballot and reopens voting on the same prompt.",
+    },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };

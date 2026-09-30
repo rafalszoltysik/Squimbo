@@ -3,7 +3,7 @@ import type { SeoPageCopy } from "../types";
 export const discordActivityMobileCopy: SeoPageCopy = {
   metaTitle: "Discord Activity on mobile",
   metaDescription:
-    "Play Squimbo inside Discord on desktop or mobile. No separate game installer — Voice Activity is the lobby.",
+    "Play Squimbo inside Discord on desktop or mobile. No separate game installer: Voice Activity is the lobby.",
   footerLabel: "Discord on mobile",
   llmsDescription:
     "Squimbo runs in Discord desktop and mobile clients with no separate game install.",
@@ -17,7 +17,11 @@ export const discordActivityMobileCopy: SeoPageCopy = {
     },
     {
       title: "No extra game download",
-      body: "The marketing site explains the game. The night happens inside Discord. You do not install a standalone Squimbo app to play.",
+      body: "The marketing site explains the game. The night happens inside Discord. You do not install a standalone Squimbo app from an app store to play.",
+    },
+    {
+      title: "Mixed clients on one call",
+      body: "Some people can be on desktop Discord and others on mobile. Everyone opens Squimbo in the same voice channel so they share one Activity instance.",
     },
     {
       title: "If something fails to load",
@@ -43,5 +47,5 @@ export const discordActivityMobileCopy: SeoPageCopy = {
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };

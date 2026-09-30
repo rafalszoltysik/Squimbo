@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PromptMarquee } from "@/components/PromptMarquee";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { StickyPlayBar } from "@/components/StickyPlayBar";
-import { discordPlayUrl } from "@/discord";
+import { discordDirectoryUrl, discordPlayUrl } from "@/discord";
 import { getMessages } from "@/i18n";
 import { isLocale, type Locale } from "@/i18n/locales";
 import { buildPageMetadata } from "@/seo/metadata";
@@ -29,11 +29,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-function buildLandingJsonLd(locale: Locale, playUrl: string | null) {
+function buildLandingJsonLd(
+  locale: Locale,
+  playUrl: string | null,
+  directoryUrl: string | null,
+) {
   const siteUrl = getSiteUrl();
   const messages = getMessages(locale);
   const pageUrl = `${siteUrl}/${locale}`;
   const L = messages.landing;
+  const supportDiscord =
+    process.env.NEXT_PUBLIC_SUPPORT_DISCORD_URL?.trim() ||
+    "https://discord.gg/PrQkDcxEqk";
+  const organizationSameAs = [
+    ...(directoryUrl ? [directoryUrl] : []),
+    supportDiscord,
+  ];
 
   return {
     "@context": "https://schema.org",
@@ -52,6 +63,9 @@ function buildLandingJsonLd(locale: Locale, playUrl: string | null) {
         name: messages.meta.siteName,
         url: pageUrl,
         logo: `${siteUrl}/squimbo-logo.png`,
+        ...(organizationSameAs.length
+          ? { sameAs: organizationSameAs }
+          : {}),
       },
       {
         "@type": "SoftwareApplication",
@@ -65,10 +79,13 @@ function buildLandingJsonLd(locale: Locale, playUrl: string | null) {
           price: "0",
           priceCurrency: "USD",
         },
-        ...(playUrl
+        ...(playUrl || directoryUrl
           ? {
-              installUrl: playUrl,
-              sameAs: [playUrl],
+              ...(playUrl ? { installUrl: playUrl } : {}),
+              sameAs: [
+                ...(directoryUrl ? [directoryUrl] : []),
+                ...(playUrl ? [playUrl] : []),
+              ],
             }
           : {}),
       },
@@ -117,13 +134,14 @@ export default async function LandingPage({ params }: Props) {
   const messages = getMessages(raw);
   const clientId = process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID;
   const playUrl = discordPlayUrl(clientId);
+  const directoryUrl = discordDirectoryUrl(clientId);
   const ctaHref = playUrl ?? "https://discord.com";
   const ctaLabel = playUrl ? messages.landing.cta : messages.landing.ctaFallback;
   const closeCta = playUrl ? messages.landing.closeCta : messages.landing.ctaFallback;
 
   return (
     <>
-      <JsonLd data={buildLandingJsonLd(raw, playUrl)} />
+      <JsonLd data={buildLandingJsonLd(raw, playUrl, directoryUrl)} />
       <StickyPlayBar brand={messages.landing.brand} ctaLabel={ctaLabel} ctaHref={ctaHref} />
       <RevealOnScroll />
 
@@ -163,6 +181,10 @@ export default async function LandingPage({ params }: Props) {
           {" · "}
           <Link href={`/${raw}/discord-activity`}>
             {messages.landing.learnDiscordActivity}
+          </Link>
+          {" · "}
+          <Link href={`/${raw}/discord-activity-not-a-bot`}>
+            {messages.landing.learnNotABot}
           </Link>
         </p>
       </section>
@@ -231,6 +253,7 @@ export default async function LandingPage({ params }: Props) {
             <li>{messages.landing.fitPoint1}</li>
             <li>{messages.landing.fitPoint2}</li>
             <li>{messages.landing.fitPoint3}</li>
+            <li>{messages.landing.fitPoint4}</li>
           </ul>
           <p className="fit__more">
             <Link href={`/${raw}/discord-activity`}>

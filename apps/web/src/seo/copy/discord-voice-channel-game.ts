@@ -9,7 +9,7 @@ export const discordVoiceChannelGameCopy: SeoPageCopy = {
     "Why Squimbo targets groups already on voice, not strangers or a separate lobby.",
   title: "A party game for the voice channel you are already in",
   lead:
-    "Squimbo assumes the hard part is done: your friends are on voice. The game opens as a Discord Activity in that channel so the people talking are the players.",
+    "You’re already together on voice. That is the hard part. Squimbo opens as a Discord Activity in that channel so the people talking are the players.",
   sections: [
     {
       title: "Same channel, same room",
@@ -22,6 +22,10 @@ export const discordVoiceChannelGameCopy: SeoPageCopy = {
     {
       title: "Voice stays on",
       body: "You keep talking while you vote. Sealed “most likely” rounds, then scores at the finale. Reactions happen on the call, not in a silent browser tab.",
+    },
+    {
+      title: "What this page is not",
+      body: "This is not a ranked list of every Discord game. It is the job: play with the people already on your call. For the category pitch, see Discord party game.",
     },
   ],
   faqTitle: "FAQ",
@@ -39,9 +43,9 @@ export const discordVoiceChannelGameCopy: SeoPageCopy = {
     {
       question: "Is this a bot game in chat?",
       answer:
-        "No. Squimbo is a Discord Activity, not a slash-command bot. The night happens inside the Activity UI.",
+        "No. Squimbo is a Discord Activity, not a slash-command bot. The night happens inside the Activity UI. See Activity, not a bot.",
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };
