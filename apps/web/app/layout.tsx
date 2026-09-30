@@ -44,7 +44,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    // Extensions (e.g. LanguageTool's data-lt-installed) mutate <html> before
+    // hydration; suppress only attribute mismatches on this element.
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         {children}
         <ConsentedAnalytics />

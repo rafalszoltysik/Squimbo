@@ -6,4 +6,4 @@ PostgreSQL via Prisma. Schema domains: identity (`User`), match (`GameRoom`, `Ro
 
 Commands from repo root: `pnpm db:up`, `pnpm db:migrate`, `pnpm db:seed`, `pnpm db:generate`.
 
-Authz lives in Nest — do not treat the database as the authorization layer.
+Authz lives in Nest — do not treat the database as the authorization layer. On Supabase, RLS is enabled on app tables as a PostgREST lockdown for the public anon key (no per-row policies). See migration `20260930120000_supabase_rls_lockdown` and `docs/security/secure-coding.md`.

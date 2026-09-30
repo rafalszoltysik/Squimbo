@@ -3,7 +3,7 @@ export const en = {
     siteName: "Squimbo",
     landingTitle: "Squimbo, a Discord party game",
     landingDescription:
-      "Who knows the group best? Vote in the dark inside Discord.",
+      "Squimbo is a Discord Activity party game. Open it in voice, vote sealed on most likely rounds, and see who knows the group best at the finale.",
     privacyTitle: "Privacy Policy",
     privacyDescription:
       "How Rafał Szołtysik (Squimbo) processes Discord identity, game data, and website analytics under EU and US privacy law.",
@@ -27,7 +27,7 @@ export const en = {
     subhead:
       "A Discord Activity party game. Open it in voice, vote in the dark, then face the finale.",
     entityBlurb:
-      "Squimbo is a Discord Activity party game for groups already in a voice channel. Whoever opens the Activity is in. Players vote on “who is most likely” rounds with sealed tallies, then see scores only at the finale. It feels best with about 3 to 8 people.",
+      "Squimbo is a Discord Activity party game for groups already in a voice channel, not a slash-command bot and not a separate installer. Whoever opens the Activity is in. Players vote on “who is most likely” rounds with sealed tallies, then see scores only at the finale. It feels best with about 3 to 8 people.",
     cta: "Play on Discord",
     ctaFallback: "Open Discord",
     ctaSecondary: "See how it works",
@@ -57,23 +57,24 @@ export const en = {
       "Keep going or wrap when the night feels done. The scoreboard waits for the finale, then play again.",
     fitTitle: "Same voice channel. Same room.",
     fitBody:
-      "Squimbo is a Discord Activity, not a separate app. Your display names and avatars come with you. Best with about 3 to 8 people in voice.",
+      "Squimbo is a Discord Activity, not a separate app and not a slash-command bot. Your display names and avatars come with you. Best with about 3 to 8 people already in voice, with no random matchmaking.",
     fitPoint1: "Open the Activity in voice",
     fitPoint2: "Same controls for everyone",
     fitPoint3: "Scores only at the finale",
+    fitPoint4: "Sealed most likely rounds",
     faqTitle: "FAQ",
     faq1Q: "What is Squimbo?",
     faq1A:
-      "Squimbo is a party game that runs as a Discord Activity. Your group opens it in a voice channel, votes on most likely rounds, and sees scores when you wrap the night.",
+      "Squimbo is a party game that runs as a Discord Activity. Your group opens it in a voice channel, votes on most likely rounds with sealed tallies, and sees scores when you wrap the night.",
     faq2Q: "How many players do I need?",
     faq2A:
       "Squimbo needs at least two players to start. It feels best with about 3 to 8 people already in the channel.",
     faq3Q: "How do people join?",
     faq3A:
       "They open Squimbo in the same voice channel. Whoever opens the Activity there is in the same room.",
-    faq4Q: "Is it a separate app?",
+    faq4Q: "Is it a separate app or a bot?",
     faq4A:
-      "No. Squimbo launches inside Discord on desktop and mobile. There is no extra install for the game itself.",
+      "Neither. Squimbo launches as a Discord Activity inside Discord on desktop and mobile, not a slash-command bot and not an extra game install.",
     faq5Q: "Is Squimbo free?",
     faq5A:
       "Yes. Squimbo is free to play as a Discord Activity. There is no paid join fee on the marketing site.",
@@ -88,6 +89,7 @@ export const en = {
     learnHowToPlay: "Full how-to play walkthrough",
     learnMostLikely: "How sealed most likely rounds work",
     learnDiscordActivity: "What is a Discord Activity?",
+    learnNotABot: "Activity, not a bot",
     learnFaq: "All FAQ answers",
   },
   footer: {

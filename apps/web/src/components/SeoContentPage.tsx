@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
+import { RichText, stripMarkdownLinks } from "@/components/RichText";
 import type { Locale } from "@/i18n/locales";
 import { getSiteUrl } from "@/seo/site-url";
 
@@ -82,7 +83,7 @@ function buildContentJsonLd({
       "@id": `${pageUrl}#webpage`,
       url: pageUrl,
       name: title,
-      description: lead,
+      description: stripMarkdownLinks(lead),
       isPartOf: { "@id": `${homeUrl}#website` },
       inLanguage: "en",
     },
@@ -115,7 +116,7 @@ function buildContentJsonLd({
         name: item.question,
         acceptedAnswer: {
           "@type": "Answer",
-          text: item.answer,
+          text: stripMarkdownLinks(item.answer),
         },
       })),
     });
@@ -126,12 +127,12 @@ function buildContentJsonLd({
       "@type": "HowTo",
       "@id": `${pageUrl}#howto`,
       name: howTo.name,
-      description: howTo.description,
+      description: stripMarkdownLinks(howTo.description),
       step: howTo.steps.map((step, index) => ({
         "@type": "HowToStep",
         position: index + 1,
         name: step.name,
-        text: step.text,
+        text: stripMarkdownLinks(step.text),
       })),
     });
   }
@@ -189,16 +190,24 @@ export function SeoContentPage({
         </nav>
 
         <h1>{title}</h1>
-        <p>{lead}</p>
+        <p>
+          <RichText text={lead} locale={locale} />
+        </p>
 
         {sections.map((section) => (
           <section key={section.title}>
             <h2>{section.title}</h2>
-            {section.body ? <p>{section.body}</p> : null}
+            {section.body ? (
+              <p>
+                <RichText text={section.body} locale={locale} />
+              </p>
+            ) : null}
             {section.points && section.points.length > 0 ? (
               <ul>
                 {section.points.map((point) => (
-                  <li key={point}>{point}</li>
+                  <li key={point}>
+                    <RichText text={point} locale={locale} />
+                  </li>
                 ))}
               </ul>
             ) : null}
@@ -206,13 +215,25 @@ export function SeoContentPage({
         ))}
 
         {guidesTitle && guides && guides.length > 0 ? (
-          <section aria-labelledby="seo-guides-title">
+          <section
+            className="seo-link-section"
+            aria-labelledby="seo-guides-title"
+          >
             <h2 id="seo-guides-title">{guidesTitle}</h2>
-            <ul>
+            <ul className="seo-link-grid">
               {guides.map((guide) => (
                 <li key={guide.href}>
-                  <Link href={`/${locale}${guide.href}`}>{guide.label}</Link>
-                  {guide.description ? <> — {guide.description}</> : null}
+                  <Link
+                    className="seo-link-tile"
+                    href={`/${locale}${guide.href}`}
+                  >
+                    <span className="seo-link-tile__label">{guide.label}</span>
+                    {guide.description ? (
+                      <span className="seo-link-tile__desc">
+                        {guide.description}
+                      </span>
+                    ) : null}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -220,29 +241,41 @@ export function SeoContentPage({
         ) : null}
 
         {faq.length > 0 ? (
-          <section aria-labelledby="seo-faq-title">
+          <section className="seo-faq" aria-labelledby="seo-faq-title">
             <h2 id="seo-faq-title">{faqTitle}</h2>
-            {faq.map((item) => (
-              <div key={item.question}>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-              </div>
-            ))}
+            <div className="seo-faq__list">
+              {faq.map((item) => (
+                <div className="seo-faq__item" key={item.question}>
+                  <h3>{item.question}</h3>
+                  <p>
+                    <RichText text={item.answer} locale={locale} />
+                  </p>
+                </div>
+              ))}
+            </div>
           </section>
         ) : null}
 
-        <p>
+        <p className="seo-cta-wrap">
           <a className="hero__cta" href={ctaHref} rel="noopener noreferrer">
             {ctaLabel}
           </a>
         </p>
 
-        <nav aria-labelledby="seo-related-title">
+        <nav
+          className="seo-link-section"
+          aria-labelledby="seo-related-title"
+        >
           <h2 id="seo-related-title">{relatedTitle}</h2>
-          <ul>
+          <ul className="seo-link-grid seo-link-grid--compact">
             {related.map((link) => (
               <li key={`${link.href}-${link.label}`}>
-                <Link href={`/${locale}${link.href}`}>{link.label}</Link>
+                <Link
+                  className="seo-link-tile"
+                  href={`/${locale}${link.href}`}
+                >
+                  <span className="seo-link-tile__label">{link.label}</span>
+                </Link>
               </li>
             ))}
           </ul>

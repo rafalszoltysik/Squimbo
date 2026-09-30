@@ -23,6 +23,10 @@ export const discordPartyGamePlayersCopy: SeoPageCopy = {
       title: "Late joiners",
       body: "Someone who arrives mid-night opens Squimbo in the same voice channel. They join the Activity instance that is already the room.",
     },
+    {
+      title: "Hard max",
+      body: "Product docs do not advertise a hard public max for marketing. Design for the voice crew on the call, not a whole-server audience.",
+    },
   ],
   faqTitle: "FAQ",
   faq: [
@@ -39,9 +43,9 @@ export const discordPartyGamePlayersCopy: SeoPageCopy = {
     {
       question: "Do spectators need accounts?",
       answer:
-        "Players are whoever opens the Activity in that channel. Squimbo uses Discord identity — there is no separate Squimbo account on the marketing site.",
+        "Players are whoever opens the Activity in that channel. Squimbo uses Discord identity: there is no separate Squimbo account on the marketing site.",
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };

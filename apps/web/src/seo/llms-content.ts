@@ -1,5 +1,6 @@
 import { getMessages } from "@/i18n";
 import { defaultLocale } from "@/i18n/locales";
+import { discordDirectoryUrl, discordPlayUrl } from "@/discord";
 import {
   getGuideRoutes,
   getPillarRoutes,
@@ -28,12 +29,19 @@ export function buildLlmsTxt(): string {
   });
 
   const supportEmail = process.env.NEXT_PUBLIC_SUPPORT_EMAIL?.trim();
+  const clientId = process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID;
+  const directoryUrl = discordDirectoryUrl(clientId);
+  const playUrl = discordPlayUrl(clientId);
   const contactLines = [
     `- Support Discord: ${SUPPORT_DISCORD_URL}`,
     supportEmail
       ? `- Privacy / support email: ${supportEmail}`
       : `- Privacy / support: see ${site}/en/support and ${site}/en/privacy`,
   ];
+  const directoryLine = directoryUrl
+    ? `- Discord App Directory: ${directoryUrl}`
+    : null;
+  const playLine = playUrl ? `- Add Squimbo on Discord: ${playUrl}` : null;
 
   return [
     `# ${m.meta.siteName}`,
@@ -61,16 +69,18 @@ export function buildLlmsTxt(): string {
     `- [Privacy Policy](${site}/en/privacy): ${m.meta.privacyDescription}`,
     `- [Terms of Use](${site}/en/terms): ${m.meta.termsDescription}`,
     "",
-    "## Product facts (MVP)",
+    "## Product facts",
     "",
     "- Discord Activity party game; room key is the Activity instance id",
     "- Players: Discord display names and avatars from the Embedded App SDK",
     "- Minimum 2 players to start; feels best with about 3 to 8 in voice",
     "- Core loop: sealed “who is most likely” votes → reveal → finale scoreboard",
-    "- Prompt bank is English most_likely in MVP; Activity UI chrome is en + pl",
+    "- Prompt bank is English most likely; Activity UI chrome is en + pl",
     "- No in-game host privileges (technical hostUserId only)",
     "- Not a slash-command bot; not a separate game installer; not random matchmaking",
     "- Marketing site is legal + SEO home; the night runs inside Discord",
+    ...(directoryLine ? [directoryLine] : []),
+    ...(playLine ? [playLine] : []),
     "",
     "## Contact",
     "",
@@ -123,6 +133,7 @@ export function buildLlmsFullTxt(): string {
     `- ${L.fitPoint1}`,
     `- ${L.fitPoint2}`,
     `- ${L.fitPoint3}`,
+    `- ${L.fitPoint4}`,
     "",
     `## ${faq.title}`,
     "",
@@ -132,11 +143,11 @@ export function buildLlmsFullTxt(): string {
       item.answer,
       "",
     ]),
-    "## Product facts (MVP)",
+    "## Product facts",
     "",
     "- Discord Activity; room = Activity instance id",
-    "- Min 2 players; sweet spot ~3–8",
-    "- Sealed most_likely votes; scores at finale",
+    "- Min 2 players; sweet spot ~3 to 8",
+    "- Sealed most likely votes; scores at finale",
     "- No bot, no separate installer, no matchmaking",
     "",
     "## Links",

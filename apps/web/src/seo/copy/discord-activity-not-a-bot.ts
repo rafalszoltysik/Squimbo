@@ -3,28 +3,28 @@ import type { SeoPageCopy } from "../types";
 export const discordActivityNotABotCopy: SeoPageCopy = {
   metaTitle: "Discord Activity, not a bot",
   metaDescription:
-    "Squimbo is a Discord Activity in voice — not a slash-command bot, chat economy, or separate browser lobby.",
+    "Squimbo is a Discord Activity in voice, not a slash-command bot, chat economy, or separate browser lobby.",
   footerLabel: "Activity, not a bot",
   llmsDescription:
     "Squimbo is a Discord Activity, not a slash-command bot or chat moderation tool.",
   title: "Squimbo is a Discord Activity, not a bot",
   lead:
-    "Squimbo launches from the Activity shelf on a voice channel. It is not a Discord bot with slash commands, chat moderation, or a text-channel economy.",
+    "Squimbo opens from the Activity shelf on a voice channel. You do not invite a bot, type slash commands, or play through chat replies.",
   sections: [
     {
       title: "Activity vs bot",
-      body: "A Discord Activity is a shared app inside Discord, usually tied to a voice channel. A bot is a different surface: messages, slash commands, and server permissions. Squimbo ships as an Activity.",
+      body: "A Discord Activity is a shared app inside Discord, usually tied to a voice channel. A bot lives in chat with messages and slash commands. Squimbo is an Activity so everyone already on the call shares one UI.",
     },
     {
       title: "What that means for players",
-      body: "You open Squimbo in voice. The Activity instance is the room. Votes and scores live in the Activity UI, not as bot replies in chat.",
+      body: "You open Squimbo in voice. The Activity instance is the room. Votes and scores live in the Activity UI, not as bot messages in text chat.",
     },
     {
-      title: "Out of scope for Squimbo MVP",
+      title: "What you skip",
       points: [
-        "No /play slash commands.",
-        "No chat moderation or server economy.",
-        "No requirement to add a bot before you can play.",
+        "No bot invite before you can play.",
+        "No slash commands in chat to start a night.",
+        "No moderation tools or server economy bolted on.",
       ],
     },
   ],
@@ -43,9 +43,9 @@ export const discordActivityNotABotCopy: SeoPageCopy = {
     {
       question: "Is the marketing site the game?",
       answer:
-        "No. squimbo.app explains the product and hosts legal pages. The game runs inside Discord.",
+        "No. This site explains the product and hosts legal pages. The game runs inside Discord.",
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };

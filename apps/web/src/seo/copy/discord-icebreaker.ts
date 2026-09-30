@@ -3,13 +3,13 @@ import type { SeoPageCopy } from "../types";
 export const discordIcebreakerCopy: SeoPageCopy = {
   metaTitle: "Discord icebreaker Activity",
   metaDescription:
-    "Use Squimbo as a short icebreaker in Discord voice: sealed most likely rounds for people already on the call.",
+    "Use Squimbo as a short Discord Activity icebreaker in voice with sealed most likely rounds for people already on the call.",
   footerLabel: "Discord icebreaker",
   llmsDescription:
     "Squimbo as a short voice-channel icebreaker: sealed most likely rounds, then a finale.",
   title: "An icebreaker for people already on Discord voice",
   lead:
-    "When the channel is full and nobody knows what to do for ten minutes, Squimbo gives you a shared beat: sealed “most likely” rounds, then a finale.",
+    "When the channel is full and nobody knows what to do for ten minutes, Squimbo gives you a shared Discord Activity beat: sealed “most likely” rounds, then a finale, not a text-channel poll bot.",
   sections: [
     {
       title: "Built for a short shared moment",
@@ -25,6 +25,7 @@ export const discordIcebreakerCopy: SeoPageCopy = {
         "Not a text-channel poll bot.",
         "Not a separate mobile icebreaker app.",
         "Not a full quiz builder for people who are offline.",
+        "Not a dump of generic icebreaker question lists.",
       ],
     },
   ],
@@ -38,7 +39,7 @@ export const discordIcebreakerCopy: SeoPageCopy = {
     {
       question: "Do we need categories or packs?",
       answer:
-        "MVP uses one shared English most-likely prompt bank. There is no pack picker in the lobby today.",
+        "Squimbo uses one shared English most-likely prompt bank. There is no pack picker in the lobby.",
     },
     {
       question: "How long is a night?",
@@ -47,5 +48,5 @@ export const discordIcebreakerCopy: SeoPageCopy = {
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };

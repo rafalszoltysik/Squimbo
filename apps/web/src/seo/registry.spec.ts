@@ -72,6 +72,33 @@ describe("SEO registry", () => {
 
   it("lists all pillars and guides in their sections", () => {
     expect(getPillarRoutes().length).toBeGreaterThanOrEqual(4);
-    expect(getGuideRoutes().length).toBe(8);
+    expect(getGuideRoutes().length).toBe(56);
+  });
+
+  it("copy avoids em dashes and MVP jargon", () => {
+    for (const route of SEO_ROUTES) {
+      const copy = getSeoPageCopy(route.path);
+      const blobs = [
+        copy.metaTitle,
+        copy.metaDescription,
+        copy.footerLabel,
+        copy.llmsDescription,
+        copy.title,
+        copy.lead,
+        copy.relatedTitle,
+        copy.guidesTitle ?? "",
+        ...copy.sections.flatMap((section) => [
+          section.title,
+          section.body ?? "",
+          ...(section.points ?? []),
+        ]),
+        ...copy.faq.flatMap((item) => [item.question, item.answer]),
+      ];
+      for (const text of blobs) {
+        expect(text, route.path).not.toMatch(/[—–]/);
+        expect(text, route.path).not.toMatch(/\bMVP\b/);
+        expect(text, route.path).not.toMatch(/Out of scope/i);
+      }
+    }
   });
 });

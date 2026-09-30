@@ -3,7 +3,7 @@ import type { SeoPageCopy } from "../types";
 export const noHostPartyGameCopy: SeoPageCopy = {
   metaTitle: "Party game with no host privileges",
   metaDescription:
-    "In Squimbo everyone shares the same controls. The first joiner is stored as a technical host id only — no in-game privileges.",
+    "In Squimbo everyone shares the same controls. The first joiner is stored as a technical host id only: no in-game privileges.",
   footerLabel: "No host privileges",
   llmsDescription:
     "Squimbo has no in-game host privileges. Everyone shares the same controls.",
@@ -13,7 +13,7 @@ export const noHostPartyGameCopy: SeoPageCopy = {
   sections: [
     {
       title: "Everyone plays the same way",
-      body: "Ready-up, voting, next round, and wrap-up intents are shared. The night moves when the group does — not when one person clicks “admin.”",
+      body: "Ready-up, voting, next round, and wrap-up intents are shared. The night moves when the group does, not when one person clicks “admin.”",
     },
     {
       title: "Why that fits Discord voice",
@@ -22,6 +22,10 @@ export const noHostPartyGameCopy: SeoPageCopy = {
     {
       title: "What “host” still means technically",
       body: "The API may remember who joined first as hostUserId. That is bookkeeping for the room, not a privilege tier in the UI.",
+    },
+    {
+      title: "Consensus, not a host dashboard",
+      body: "Wrap-up and keep-going style choices are group intents after reveals. There is no Squimbo host panel for kicks, packs, or forced starts.",
     },
   ],
   faqTitle: "FAQ",
@@ -43,5 +47,5 @@ export const noHostPartyGameCopy: SeoPageCopy = {
     },
   ],
   cta: "Play on Discord",
-  relatedTitle: "Keep reading",
+  relatedTitle: "Related",
 };
